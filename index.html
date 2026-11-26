@@ -13,7 +13,7 @@
     box-sizing: border-box;
  }
  html,
- body {
+body {
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -27,17 +27,52 @@
     background-color: red;
 }
 
+small{
+   font-size: 12px;
+   color: red;
+}
+
  
 </style>
    
 </head>
 <body>
-<input type="text" placeholder="Write anything">
-<h1>Total characters Left: <span>20</span></h1>
+<form>
+    <input id="name" type="text" placeholder="Name">
+    <br>
+    <small>Your name should be greater than 2 characyers</small>
+    <br><br>
+    <br><br>
+    <input id="email" type="text" placeholder="Email">
+    <br><br>
+    <input id="password" type="password" placeholder="Password">
+<select id="gender">
+    <option value="">Select an option</option>
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+    <option value="other">Other</option>
+</select>
+<br><br>
+<textarea id="message" placeholder="Write anything"></textarea>
+<br><br>
+<input type="submit" value="Submit">
+<br><br>
+
+
+
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
 <script src="script.js"></script>
-
-
-
-
 </body>
 </html>
