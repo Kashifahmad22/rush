@@ -1,11 +1,23 @@
-//jab bhi aap click karte ho ya koi bhi event raise karte ho to aapka jo event flow do phases mein chalta hai :
+let inp = document.querySelector("input")
+let span = document.querySelector("span")
 
-//phase1: event top level element se neeche ki taraf aayega 
-//phase2: event bottom level element se upar ki taraf propagate hoga 
+inp.addEventListener("input", function() {
 
-//phase1 ko capturing phase bhi kehte hai
-//phase2 ko bubbling phase bhi kehte hai      
+    let left = 20 - inp.value.length;
+    if (left < 0) {
+       span.textContent = left; 
+       span.style.color = "red";
+    } else {
+       span.textContent = left;
+       span.style.color = "black";
+    }
 
-// aur pehle phase 1 hoti hai 
-//capture phase hoti hai jab event top level element se neeche ki taraf propagate hota hai 
-//bubbling phase hoti hai jab event bottom level element se upar ki taraf propagate hota hai 
+});
+
+//diff btw capturing phase and bubbling phase
+//capturing phase: event propagates from top level element to the target element
+//bubbling phase: event propagates from target element to the top level element
+
+//diff between event and event listener
+//event: an occurrence in the DOM that can be detected and handled
+//event listener: a function that waits for a specific event to occur and executes when it does     
