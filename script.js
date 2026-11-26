@@ -1,22 +1,37 @@
-let btn = document.querySelector("#btn");        
- //yaha pe document.getelemetbyId tha jisse ham element ko select kar rahe the, 
- // ab querySelector se select kar rahe hain.getElementById ki jagah querySelector use kar rahe hain kyuki querySelector zyada flexible hai aur CSS selectors ka use kar sakte hain. jabki getelementbyId sirf id ke liye kaam karta hai.
-let fileinp = document.querySelector("#fileinp");
+const form = document.querySelector("form");
+const main = document.querySelector("#main");
 
-btn.addEventListener("click", function () {
-    fileinp.click();
-}); 
+form.addEventListener("submit", function (event) {
+    event.preventDefault();
 
-fileinp.addEventListener("change", function (dets) {
-    //console.log(dets); // yaha pe change event ke details ko console me print kar rahe hain. dets me file ke baare me information hoti hai.
+    const inputs = form.querySelectorAll('input[type="text"]');
+    const [imageUrl, name, designation, description] = Array.from(inputs, function (input) {
+        return input.value.trim();
+    });
 
-   // console.log(fileinp.files); // yaha pe selected file ke details ko console me print kar rahe hain. fileinp.files me selected file ke baare me information hoti hai. 
+    const card = document.createElement("div");
+    card.classList.add("card");
 
-   // btn.textContent = dets.target?.files[0].name; // yaha pe selected file ka naam button ke text me set kar rahe hain. dets.target.files[0] me selected file ka pehla element hota hai aur uska name property file ka naam deta hai.
+    const profile = document.createElement("div");
+    profile.classList.add("profile");
 
-    
+    if (imageUrl) {
+        const img = document.createElement("img");
+        img.src = imageUrl;
+        img.alt = name || "Profile";
+        profile.appendChild(img);
+    }
 
+    const heading = document.createElement("h3");
+    heading.textContent = name;
 
+    const title = document.createElement("h5");
+    title.textContent = designation;
 
+    const details = document.createElement("p");
+    details.textContent = description;
 
+    card.append(profile, heading, title, details);
+    main.appendChild(card);
+    form.reset();
 });

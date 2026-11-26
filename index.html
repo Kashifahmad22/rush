@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dom_Manipulation</title>
+    <script src="script.js" defer></script>
 </head>
 <style> 
  *{
@@ -19,34 +20,65 @@
  }
 
  #main{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+   padding: 20px;
     height: 100%;
     width: 100%;
     background-color: #222;
  }
- input{
-    display:none;
- }
- #btn{
-    padding: 12px 22px ;
-    background-color: rgba(27, 123, 96, 0.748);
-    color: #fff;
-    cursor: pointer;
+
+ .card{
+    max-width:300px;
+    margin-top:40px;
     border-radius: 10px;
-    font-weight: bold;
+    display: inline-block;
+    padding:20px;
+    border:1px solid #555;
  }
- #btn:hover{
-    background-color: rgb(13, 60, 47);
+
+ .profile{
+    text-color
+    width:40px;
+    height:40px;
+    background-color: red;
+    border-radius: 50%;
+    margin-bottom: 7px;
+    overflow:hidden;
  }
+
+ .profile img{
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+ }
+ .card h5{
+    margin-top:3px;
+ }
+
+ .card p{
+    font-size:12px;
+    margin-top: 20px;
+ }
+
+ input {
+    display:block;
+ }
+
+
 </style>
 <body>
 <div id="main">
-<input id="fileinp" type="file" >
+<form>
+    
+    <input type="text" placeholder="Profile Pic">
+    <input type="text" placeholder="name">
+    <input type="text" placeholder="Occupation">
+    <input type="text" placeholder="Info">
+    <input type ="submit">
+</form>
 
-<div id ="btn">Upload File</div>
+
 </div>
-    <script src="script.js"></script>
+
+
 </body>
 </html>
