@@ -6,9 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Form Validation</title>
+    <title>JavaScript Timer Practice</title>
 
-    <!-- Linking CSS file -->
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -16,52 +15,76 @@
 
     <div class="container">
 
-        <h2>Login Form</h2>
+        <h1>JavaScript Timer Demo</h1>
+        <p class="subtitle">Practice JavaScript timing functions</p>
 
-        <!-- Form starts here -->
-        <form id="form">
+        <!-- Section 1: setTimeout and clearTimeout -->
+        <div class="section">
 
-            <!-- Email Input -->
-            <div class="form-group">
-                <label for="email">Email Address</label>
+            <h3>1. Delayed UI Action</h3>
 
-                <input
-                    type="text"
-                    id="email"
-                    placeholder="Enter your email"
-                >
+            <p id="message">Click the button to see a message.</p>
 
-                <!-- Email error message -->
-                <small id="emailError"></small>
-            </div>
+            <button onclick="showMessage()">
+                Show Message After 3 Seconds
+            </button>
 
+            <button class="cancel" onclick="cancelMessage()">
+                Cancel Timeout
+            </button>
 
-            <!-- Password Input -->
-            <div class="form-group">
-                <label for="password">Password</label>
-
-                <input
-                    type="password"
-                    id="password"
-                    placeholder="Enter your password"
-                >
-
-                <!-- Password error message -->
-                <small id="passwordError"></small>
-            </div>
+        </div>
 
 
-            <!-- Submit Button -->
-            <button type="submit">Login</button>
+        <!-- Section 2: setInterval and clearInterval -->
+        <div class="section">
 
-            <!-- Success message -->
-            <p id="resultMessage"></p>
+            <h3>2. Counter Using setInterval</h3>
 
-        </form>
+            <h2 id="counter">0</h2>
+
+            <button onclick="startCounter()">
+                Start Counter
+            </button>
+
+            <button class="cancel" onclick="stopCounter()">
+                Stop Counter
+            </button>
+
+        </div>
+
+
+        <!-- Section 3: Auto UI Refresh -->
+        <div class="section">
+
+            <h3>3. Auto Refresh UI</h3>
+
+            <p id="lastUpdated">Not updated yet</p>
+
+            <button onclick="startAutoRefresh()">
+                Start Auto Refresh
+            </button>
+
+            <button class="cancel" onclick="stopAutoRefresh()">
+                Stop Auto Refresh
+            </button>
+
+        </div>
+
+
+        <!-- Section 4: Manual Page Refresh -->
+        <div class="section">
+
+            <h3>4. Page Refresh</h3>
+
+            <button onclick="refreshPage()">
+                Refresh Page
+            </button>
+
+        </div>
 
     </div>
 
-    <!-- Linking JavaScript file -->
     <script src="script.js"></script>
 
 </body>
