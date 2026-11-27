@@ -88,4 +88,7 @@ form.addEventListener("submit", function (event) {
     }
 
 });
-    
+    // some Concepts
+    //value Vs textContent
+    // value is used to get or set the value of input, textarea, or select elements .Is used for input fields.
+    // textContent is used to get or set the text content of an element (like div, p, span, small, etc.) .Is used for displaying text content.
