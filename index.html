@@ -1,78 +1,68 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dom_Manipulation</title>
 
-<style> 
- *{
-    margin: 0;
-    padding: 0;
-    font-family: Gilroy;
-    box-sizing: border-box;
- }
- html,
-body {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    position: relative;
- }
- #abcd{
-    position: absolute;
-    transition: all cubic-bezier(0.25, 0.1, 0.25, 1) 0.3s;
-    width: 40px;
-    height: 40px;
-    background-color: red;
-}
+    <title>Form Validation</title>
 
-small{
-   font-size: 12px;
-   color: red;
-}
-
- 
-</style>
-   
+    <!-- Linking CSS file -->
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<form>
-    <input id="name" type="text" placeholder="Name">
-    <br>
-    <small>Your name should be greater than 2 characyers</small>
-    <br><br>
-    <br><br>
-    <input id="email" type="text" placeholder="Email">
-    <br><br>
-    <input id="password" type="password" placeholder="Password">
-<select id="gender">
-    <option value="">Select an option</option>
-    <option value="male">Male</option>
-    <option value="female">Female</option>
-    <option value="other">Other</option>
-</select>
-<br><br>
-<textarea id="message" placeholder="Write anything"></textarea>
-<br><br>
-<input type="submit" value="Submit">
-<br><br>
+
+    <div class="container">
+
+        <h2>Login Form</h2>
+
+        <!-- Form starts here -->
+        <form id="form">
+
+            <!-- Email Input -->
+            <div class="form-group">
+                <label for="email">Email Address</label>
+
+                <input
+                    type="text"
+                    id="email"
+                    placeholder="Enter your email"
+                >
+
+                <!-- Email error message -->
+                <small id="emailError"></small>
+            </div>
 
 
+            <!-- Password Input -->
+            <div class="form-group">
+                <label for="password">Password</label>
 
-</form>
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter your password"
+                >
+
+                <!-- Password error message -->
+                <small id="passwordError"></small>
+            </div>
 
 
+            <!-- Submit Button -->
+            <button type="submit">Login</button>
 
+            <!-- Success message -->
+            <p id="resultMessage"></p>
 
+        </form>
 
+    </div>
 
+    <!-- Linking JavaScript file -->
+    <script src="script.js"></script>
 
-
-
-
-
-
-<script src="script.js"></script>
 </body>
 </html>
