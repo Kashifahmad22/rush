@@ -1,5 +1,5 @@
 
-/* Reset default browser styling */
+/* Reset default CSS */
 * {
     margin: 0;
     padding: 0;
@@ -9,100 +9,92 @@
 /* Body styling */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f1f5f9;
+    background: #f1f5f9;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
     min-height: 100vh;
+    padding: 20px;
 }
 
-/* Main form container */
+/* Main container */
 .container {
-    background-color: white;
-    width: 380px;
+    background: white;
+    width: 500px;
     padding: 30px;
 
-    border-radius: 10px;
+    border-radius: 12px;
 
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-/* Heading */
-h2 {
+/* Main heading */
+h1 {
     text-align: center;
-    margin-bottom: 25px;
     color: #1e293b;
+    margin-bottom: 10px;
 }
 
-/* Form groups */
-.form-group {
-    margin-bottom: 20px;
+.subtitle {
+    text-align: center;
+    color: #64748b;
+    margin-bottom: 25px;
 }
 
-/* Labels */
-label {
-    display: block;
-    margin-bottom: 8px;
+/* Individual sections */
+.section {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
 
-    font-size: 14px;
-    font-weight: bold;
+    padding: 18px;
+    margin-bottom: 18px;
+}
+
+/* Section headings */
+h3 {
     color: #334155;
+    margin-bottom: 15px;
 }
 
-/* Input fields */
-input {
-    width: 100%;
-    padding: 12px;
-
-    border: 1px solid #cbd5e1;
-    border-radius: 5px;
-
-    font-size: 14px;
-    outline: none;
+/* Paragraphs */
+p {
+    margin-bottom: 12px;
+    color: #475569;
 }
 
-/* Input focus effect */
-input:focus {
-    border-color: #2563eb;
+/* Counter */
+#counter {
+    font-size: 35px;
+    color: #2563eb;
+    margin-bottom: 15px;
 }
 
-/* Error messages */
-small {
-    display: block;
-    color: #dc2626;
-
-    font-size: 12px;
-    margin-top: 6px;
-}
-
-/* Submit button */
+/* Buttons */
 button {
-    width: 100%;
-    padding: 12px;
-
-    background-color: #2563eb;
+    background: #2563eb;
     color: white;
 
     border: none;
+    padding: 10px 14px;
+
     border-radius: 5px;
-
-    font-size: 16px;
     cursor: pointer;
+
+    margin: 4px 2px;
 }
 
-/* Button hover effect */
+/* Hover effect */
 button:hover {
-    background-color: #1d4ed8;
+    background: #1d4ed8;
 }
 
-/* Success message */
-#resultMessage {
-    text-align: center;
-    color: #16a34a;
+/* Cancel and stop buttons */
+.cancel {
+    background: #dc2626;
+}
 
-    margin-top: 15px;
-    font-size: 14px;
-    font-weight: bold;
+.cancel:hover {
+    background: #b91c1c;
 }
