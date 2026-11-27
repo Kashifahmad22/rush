@@ -1,94 +1,158 @@
 
-// Select the email input field
-let email = document.querySelector("#email");
-
-// Select the password input field
-let password = document.querySelector("#password");
-
-// Select the form element
-let form = document.querySelector("form");
+// ======================================
+// 1. SETTIMEOUT AND CLEARTIMEOUT
+// ======================================
 
 
-// Add an event listener that runs when the form is submitted
-form.addEventListener("submit", function (event) {
-
-    // Prevent the form from refreshing/reloading the page
-    event.preventDefault();
+// Store the timeout ID
+let messageTimer;
 
 
-    // Clear previous email error messages
-    document.querySelector("#emailError").textContent = "";
+// Function to display a delayed message
+function showMessage() {
 
-    // Clear previous password error messages
-    document.querySelector("#passwordError").textContent = "";
+    // Clear any previously scheduled timeout
+    clearTimeout(messageTimer);
 
+    // Display a waiting message immediately
+    document.getElementById("message").textContent =
+        "Please wait...";
 
-    // Regular expression for validating email
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    // Execute this function after 3 seconds
+    messageTimer = setTimeout(function () {
 
+        // Change the UI message after 3 seconds
+        document.getElementById("message").textContent =
+            "Hello! Message displayed after 3 seconds.";
 
-    // Regular expression for validating password
-    // (?=.*[a-z])       At least one lowercase letter
-    // (?=.*[A-Z])       At least one uppercase letter
-    // (?=.*\d)          At least one digit
-    // (?=.*[@$!%*?&#^]) At least one special character
-    // [A-Za-z\d@$!%*?&#^]{8,} Minimum 8 allowed characters
+    }, 3000);
 
-    const passwordRegex =
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#^])[A-Za-z\d@$!%*?&#^]{8,}$/;
-
-
-    // Check whether the email matches the email regex
-    let emailans = emailRegex.test(email.value);
-
-    // Check whether the password matches the password regex
-    let passwordans = passwordRegex.test(password.value);
+}
 
 
-    // Assume the form is valid initially
-    let isValid = true;
+// Function to cancel the timeout
+function cancelMessage() {
+
+    // Cancel the pending timeout
+    clearTimeout(messageTimer);
+
+    // Update the UI
+    document.getElementById("message").textContent =
+        "Timeout cancelled!";
+
+}
 
 
-    // If email validation fails
-    if (!emailans) {
+// ======================================
+// 2. SETINTERVAL AND CLEARINTERVAL
+// ======================================
 
-        // Display email error message
-        document.querySelector("#emailError").textContent =
-            "Email is incorrect";
 
-        // Make the error message visible
-        document.querySelector("#emailError").style.display = "initial";
+// Counter variable
+let count = 0;
 
-        // Mark the entire form as invalid
-        isValid = false;
+// Store interval ID
+let counterInterval;
+
+
+// Function to start the counter
+function startCounter() {
+
+    // Prevent multiple intervals from starting
+    if (counterInterval !== undefined) {
+        return;
     }
 
+    // Execute this function every 1 second
+    counterInterval = setInterval(function () {
 
-    // If password validation fails
-    if (!passwordans) {
+        // Increase counter by 1
+        count++;
 
-        // Display password error message
-        document.querySelector("#passwordError").textContent =
-            "Password is incorrect";
+        // Update counter in UI
+        document.getElementById("counter").textContent = count;
 
-        // Make the error message visible
-        document.querySelector("#passwordError").style.display = "initial";
+    }, 1000);
 
-        // Mark the entire form as invalid
-        isValid = false;
+}
+
+
+// Function to stop the counter
+function stopCounter() {
+
+    // Stop the running interval
+    clearInterval(counterInterval);
+
+    // Reset interval ID
+    counterInterval = undefined;
+
+}
+
+
+// ======================================
+// 3. AUTOMATIC UI REFRESH
+// ======================================
+
+
+// Store auto refresh interval ID
+let autoRefreshInterval;
+
+
+// Function to update UI data
+function updateUI() {
+
+    // Get the current date and time
+    let currentTime = new Date();
+
+    // Display the latest update time
+    document.getElementById("lastUpdated").textContent =
+        "Last updated: " + currentTime.toLocaleTimeString();
+
+}
+
+
+// Function to start automatic UI refresh
+function startAutoRefresh() {
+
+    // Prevent multiple intervals
+    if (autoRefreshInterval !== undefined) {
+        return;
     }
 
+    // Update UI immediately
+    updateUI();
 
-    // If both email and password are valid
-    if (isValid) {
+    // Update UI every 5 seconds
+    autoRefreshInterval = setInterval(function () {
 
-        // Display success message
-        document.querySelector("#resultMessage").textContent =
-            "Everything is correct";
-    }
+        updateUI();
 
-});
-    // some Concepts
-    //value Vs textContent
-    // value is used to get or set the value of input, textarea, or select elements .Is used for input fields.
-    // textContent is used to get or set the text content of an element (like div, p, span, small, etc.) .Is used for displaying text content.
+    }, 1000);
+
+}
+
+
+// Function to stop automatic UI refresh
+function stopAutoRefresh() {
+
+    // Stop automatic UI updates
+    clearInterval(autoRefreshInterval);
+
+    // Reset interval ID
+    autoRefreshInterval = undefined;
+
+}
+
+
+// ======================================
+// 4. PAGE REFRESH FUNCTION
+// ======================================
+
+
+// Function to reload the entire webpage
+function refreshPage() {
+
+    // Reload the current webpage
+    location.reload();
+
+}
