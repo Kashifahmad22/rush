@@ -1,122 +1,139 @@
-
 // ======================================
-// 1. APPLY THEME FUNCTION
+// 1. SELECT HTML ELEMENTS
 // ======================================
 
-function applyTheme(theme) {
+// Select hamburger button
+const menuBtn = document.querySelector("#menuBtn");
 
-    // Remove both dark and light classes
-    document.body.classList.remove("dark", "light");
+// Select navigation links
+const navLinks = document.querySelector("#navLinks");
 
-    // Add the selected theme class
-    document.body.classList.add(theme);
+// Select cart counter
+const cartCount = document.querySelector("#cartCount");
 
-    // Update the theme status on the UI
-    document.getElementById("themeStatus").textContent =
-        theme.toUpperCase() + " MODE";
-}
+// Select all Add to Cart buttons
+const addCartButtons = document.querySelectorAll(".add-cart");
 
 
 // ======================================
-// 2. GET SYSTEM THEME
+// 2. HAMBURGER MENU
 // ======================================
 
-function getSystemTheme() {
+menuBtn.addEventListener("click", function() {
 
-    // Check whether the operating system prefers dark mode
-    return window.matchMedia("(prefers-color-scheme: dark)").matches
+    // Toggle active class on navigation
+    navLinks.classList.toggle("active");
 
-        // If true, return dark
-        ? "dark"
-
-        // Otherwise, return light
-        : "light";
-}
+});
 
 
 // ======================================
-// 3. SET INITIAL THEME
+// 3. ADD TO CART
 // ======================================
 
-function setInitialTheme() {
+// Initialize cart count
+let count = 0;
 
-    // Get the previously saved theme from localStorage
-    const savedTheme = localStorage.getItem("theme");
+// Add event listener to every cart button
+addCartButtons.forEach(function(button) {
 
-    // Apply saved theme if available
-    // Otherwise, detect the operating system theme
-    applyTheme(savedTheme || getSystemTheme());
-}
+    button.addEventListener("click", function() {
+
+        // Increase cart count
+        count++;
+
+        // Update cart counter in HTML
+        cartCount.textContent = count;
+
+        // Show confirmation
+        alert("Product added to cart!");
+
+    });
+
+});
 
 
 // ======================================
-// 4. SET INITIAL THEME
+// 4. SEARCH PRODUCTS
 // ======================================
 
-// Execute the initial theme function
-setInitialTheme();
+// Select search input and button
+const searchInput = document.querySelector("#searchInput");
+const searchBtn = document.querySelector("#searchBtn");
+
+// Select all product cards
+const products = document.querySelectorAll(".product-card");
+
+// Select no-results message
+const noResults = document.querySelector("#noResults");
 
 
-// ======================================
-// 5. LISTEN TO SYSTEM THEME CHANGES
-// ======================================
+// Create search function
+function searchProducts() {
 
-// Listen for changes in the operating system theme
-window.matchMedia("(prefers-color-scheme: dark)")
+    // Get entered search text
+    const searchValue = searchInput.value.toLowerCase().trim();
 
-    .addEventListener("change", () => {
+    // Track whether any product matches
+    let found = false;
 
-        // Check whether the user has manually saved a theme
-        if (!localStorage.getItem("theme")) {
+    // Loop through all products
+    products.forEach(function(product) {
 
-            // If no saved preference exists,
-            // apply the current system theme
-            applyTheme(getSystemTheme());
+        // Get product name
+        const productName = product.dataset.name.toLowerCase();
+
+        // Check if product name matches search
+        if (productName.includes(searchValue)) {
+
+            // Show matching product
+            product.style.display = "block";
+
+            found = true;
+
+        } else {
+
+            // Hide non-matching product
+            product.style.display = "none";
 
         }
 
     });
 
+    // Show message if no products match
+    noResults.style.display = found ? "block" : "none";
+
+}
+
+
+// Run search when button is clicked
+searchBtn.addEventListener("click", searchProducts);
+
+
+// Also search when Enter is pressed
+searchInput.addEventListener("keydown", function(event) {
+
+    if (event.key === "Enter") {
+
+        searchProducts();
+
+    }
+
+});
+
 
 // ======================================
-// 6. THEME TOGGLE BUTTON
+// 5. CLOSE MOBILE MENU AFTER CLICK
 // ======================================
 
-// Select the theme toggle button
-document.querySelector("#themeToggle")
+navLinks.addEventListener("click", function(event) {
 
-    .addEventListener("click", () => {
+    // Check whether a navigation link was clicked
+    if (event.target.tagName === "A") {
 
-        // Check the currently applied theme
-        const currentTheme =
-            document.body.classList.contains("dark")
-                ? "dark"
-                : "light";
+        // Close mobile menu
+        navLinks.classList.remove("active");
 
-        // Switch to the opposite theme
-        const newTheme =
-            currentTheme === "dark"
-                ? "light"
-                : "dark";
+    }
 
-        // Apply the new theme
-        applyTheme(newTheme);
-
-        // Save the user's preference in localStorage
-        localStorage.setItem("theme", newTheme);
-
-    });
-
-
-    //Why only strings works in localStorage
-    // Because localStorage only stores data as strings.
-    // If you try to store other types like objects or numbers,
-    // they will be converted to strings automatically.
-
-    //we can use JSON.stringify() to store objects as strings
-    // and JSON.parse() to retrieve them back as objects.  
-
-    // Example:
-    // const user = { name: "John", age: 30 };
-    // localStorage.setItem("user", JSON.stringify(user));
-    // const retrievedUser = JSON.parse(localStorage.getItem("user"));
+});
