@@ -1,100 +1,152 @@
 
-/* Reset default CSS */
+/* Default Light Theme */
+body.light {
+    --bg-color: #f1f5f9;
+    --card-color: #ffffff;
+    --text-color: #1e293b;
+    --secondary-text: #64748b;
+    --button-bg: #2563eb;
+    --button-text: #ffffff;
+    --border-color: #e2e8f0;
+}
+
+/* Dark Theme */
+body.dark {
+    --bg-color: #0f172a;
+    --card-color: #1e293b;
+    --text-color: #f8fafc;
+    --secondary-text: #cbd5e1;
+    --button-bg: #3b82f6;
+    --button-text: #ffffff;
+    --border-color: #334155;
+}
+
+/* Universal styling */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Body styling */
+/* Body */
 body {
     font-family: Arial, sans-serif;
-    background: #f1f5f9;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background-color: var(--bg-color);
+    color: var(--text-color);
 
     min-height: 100vh;
-    padding: 20px;
+
+    transition: background-color 0.3s ease,
+                color 0.3s ease;
 }
 
 /* Main container */
 .container {
-    background: white;
-    width: 500px;
+    max-width: 900px;
+    margin: auto;
     padding: 30px;
-
-    border-radius: 12px;
-
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-/* Main heading */
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 40px;
+}
+
+/* Heading */
 h1 {
-    text-align: center;
-    color: #1e293b;
+    font-size: 28px;
+}
+
+/* Toggle button */
+button {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+
+    border: none;
+    border-radius: 8px;
+
+    padding: 12px 20px;
+
+    font-size: 15px;
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+button:hover {
+    opacity: 0.85;
+}
+
+/* Main content */
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Cards */
+.card {
+    background-color: var(--card-color);
+
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+
+    padding: 25px;
+
+    transition: background-color 0.3s ease,
+                border-color 0.3s ease;
+}
+
+.card h2 {
+    margin-bottom: 15px;
+}
+
+.card p {
+    color: var(--secondary-text);
+    line-height: 1.7;
     margin-bottom: 10px;
 }
 
-.subtitle {
+/* Theme information */
+.theme-info {
+    background-color: var(--card-color);
+
+    padding: 20px;
+    border-radius: 10px;
+
+    border: 1px solid var(--border-color);
+}
+
+.theme-info h3 {
+    margin-bottom: 10px;
+}
+
+.theme-info p {
+    color: var(--secondary-text);
+}
+
+/* Footer */
+footer {
     text-align: center;
-    color: #64748b;
-    margin-bottom: 25px;
+    margin-top: 40px;
+    color: var(--secondary-text);
 }
 
-/* Individual sections */
-.section {
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
+/* Mobile responsive */
+@media (max-width: 600px) {
 
-    padding: 18px;
-    margin-bottom: 18px;
-}
+    .container {
+        padding: 20px;
+    }
 
-/* Section headings */
-h3 {
-    color: #334155;
-    margin-bottom: 15px;
-}
+    header {
+        flex-direction: column;
+        gap: 20px;
+    }
 
-/* Paragraphs */
-p {
-    margin-bottom: 12px;
-    color: #475569;
-}
-
-/* Counter */
-#counter {
-    font-size: 35px;
-    color: #2563eb;
-    margin-bottom: 15px;
-}
-
-/* Buttons */
-button {
-    background: #2563eb;
-    color: white;
-
-    border: none;
-    padding: 10px 14px;
-
-    border-radius: 5px;
-    cursor: pointer;
-
-    margin: 4px 2px;
-}
-
-/* Hover effect */
-button:hover {
-    background: #1d4ed8;
-}
-
-/* Cancel and stop buttons */
-.cancel {
-    background: #dc2626;
-}
-
-.cancel:hover {
-    background: #b91c1c;
 }

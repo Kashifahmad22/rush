@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>JavaScript Timer Practice</title>
+    <title>Dark Light Theme Toggle</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -15,73 +15,58 @@
 
     <div class="container">
 
-        <h1>JavaScript Timer Demo</h1>
-        <p class="subtitle">Practice JavaScript timing functions</p>
+        <!-- Header -->
+        <header>
+            <h1>Theme Toggle</h1>
 
-        <!-- Section 1: setTimeout and clearTimeout -->
-        <div class="section">
-
-            <h3>1. Delayed UI Action</h3>
-
-            <p id="message">Click the button to see a message.</p>
-
-            <button onclick="showMessage()">
-                Show Message After 3 Seconds
+            <!-- Theme toggle button -->
+            <button id="themeToggle">
+                Toggle Theme
             </button>
+        </header>
 
-            <button class="cancel" onclick="cancelMessage()">
-                Cancel Timeout
-            </button>
+        <!-- Main content -->
+        <main>
 
-        </div>
+            <div class="card">
 
+                <h2>Welcome to My Website!</h2>
 
-        <!-- Section 2: setInterval and clearInterval -->
-        <div class="section">
+                <p>
+                    This is a simple demonstration of
+                    Dark and Light theme switching using JavaScript.
+                </p>
 
-            <h3>2. Counter Using setInterval</h3>
+                <p>
+                    Your theme preference will be saved
+                    in localStorage.
+                </p>
 
-            <h2 id="counter">0</h2>
+            </div>
 
-            <button onclick="startCounter()">
-                Start Counter
-            </button>
+            <div class="card">
 
-            <button class="cancel" onclick="stopCounter()">
-                Stop Counter
-            </button>
+                <h2>How it works?</h2>
 
-        </div>
+                <p>
+                    The website automatically detects your
+                    system theme when no manual preference
+                    has been saved.
+                </p>
 
+            </div>
 
-        <!-- Section 3: Auto UI Refresh -->
-        <div class="section">
+            <!-- Current theme display -->
+            <div class="theme-info">
+                <h3>Current Theme:</h3>
+                <p id="themeStatus">Loading...</p>
+            </div>
 
-            <h3>3. Auto Refresh UI</h3>
+        </main>
 
-            <p id="lastUpdated">Not updated yet</p>
-
-            <button onclick="startAutoRefresh()">
-                Start Auto Refresh
-            </button>
-
-            <button class="cancel" onclick="stopAutoRefresh()">
-                Stop Auto Refresh
-            </button>
-
-        </div>
-
-
-        <!-- Section 4: Manual Page Refresh -->
-        <div class="section">
-
-            <h3>4. Page Refresh</h3>
-
-            <button onclick="refreshPage()">
-                Refresh Page
-            </button>
-
-        </div>
+        <footer>
+            <p>Built with HTML, CSS and JavaScript</p>
+        </footer>
 
     </div>
 
