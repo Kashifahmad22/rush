@@ -1,139 +1,99 @@
-// ======================================
-// 1. SELECT HTML ELEMENTS
-// ======================================
+let users = [
+  {
+    name: "amisha rathore",
+    pic: "https://i.pinimg.com/736x/cd/9b/1c/cd9b1cf5b96e8300751f952488d6c002.jpg",
+    bio: "silent chaos in a loud world 🌑🖤 | not for everyone",
+  },
+  {
+    name: "amita mehta",
+    pic: "https://i.pinimg.com/736x/1f/2f/85/1f2f856bf3a020ed8ee9ecb3306ae074.jpg",
+    bio: "main character energy 🎬 | coffee > everything ☕✨",
+  },
+  {
+    name: "isha oberoi",
+    pic: "https://i.pinimg.com/736x/23/48/7e/23487ef1268cfe017047a0640318c0d0.jpg",
+    bio: "walking through dreams in doc martens 💭🖤 | late night thinker",
+  },
+  {
+    name: "Ojin Oklawa",
+    pic: "https://i.pinimg.com/736x/01/be/94/01be94b0b5bf03a50b5d6c4bfec78063.jpg",
+    bio: "too glam to give a damn 💅 | filter free soul",
+  },
+  {
+    name: "diya bansal",
+    pic: "https://i.pinimg.com/736x/74/b0/67/74b067e6c5ece09d99f68c42c5f6754e.jpg",
+    bio: "a little chaos, a lot of art 🎨✨ | just vibes",
+  },
+  {
+    name: "tanay rawat",
+    pic: "https://i.pinimg.com/736x/9b/78/b9/9b78b95425278ee37e88869b8c5fb2c6.jpg",
+    bio: "don’t text, just vibe 🪩 | soft heart, sharp mind",
+  },
+  {
+    name: "mohit chhabra",
+    pic: "https://i.pinimg.com/736x/22/8b/cf/228bcf5a0800f813cd1744d4ccbf01ea.jpg",
+    bio: "aesthetic overload 📸🕊️ | living in lowercase",
+  },
+];
 
-// Select hamburger button
-const menuBtn = document.querySelector("#menuBtn");
+function showUsers(arr) {
+  arr.forEach(function (user) {
+    // Create outer card div
+    const card = document.createElement("div");
+    card.classList.add("card");
 
-// Select navigation links
-const navLinks = document.querySelector("#navLinks");
+    // Create image
+    const img = document.createElement("img");
+    img.src = user.pic;
+    img.classList.add("bg-img");
 
-// Select cart counter
-const cartCount = document.querySelector("#cartCount");
+    // Create blurred-layer div
+    const blurredLayer = document.createElement("div");
+    blurredLayer.style.backgroundImage = `url(${user.pic})`;
+    blurredLayer.classList.add("blurred-layer");
 
-// Select all Add to Cart buttons
-const addCartButtons = document.querySelectorAll(".add-cart");
+    // Create content div
+    const content = document.createElement("div");
+    content.classList.add("content");
 
+    // Create h3 and paragraph
+    const heading = document.createElement("h3");
+    heading.textContent = user.name;
 
-// ======================================
-// 2. HAMBURGER MENU
-// ======================================
+    const para = document.createElement("p");
+    para.textContent = user.bio;
 
-menuBtn.addEventListener("click", function() {
+    // Append heading and paragraph to content
+    content.appendChild(heading);
+    content.appendChild(para);
 
-    // Toggle active class on navigation
-    navLinks.classList.toggle("active");
+    // Append all to card
+    card.appendChild(img);
+    card.appendChild(blurredLayer);
+    card.appendChild(content);
 
-});
-
-
-// ======================================
-// 3. ADD TO CART
-// ======================================
-
-// Initialize cart count
-let count = 0;
-
-// Add event listener to every cart button
-addCartButtons.forEach(function(button) {
-
-    button.addEventListener("click", function() {
-
-        // Increase cart count
-        count++;
-
-        // Update cart counter in HTML
-        cartCount.textContent = count;
-
-        // Show confirmation
-        alert("Product added to cart!");
-
-    });
-
-});
-
-
-// ======================================
-// 4. SEARCH PRODUCTS
-// ======================================
-
-// Select search input and button
-const searchInput = document.querySelector("#searchInput");
-const searchBtn = document.querySelector("#searchBtn");
-
-// Select all product cards
-const products = document.querySelectorAll(".product-card");
-
-// Select no-results message
-const noResults = document.querySelector("#noResults");
-
-
-// Create search function
-function searchProducts() {
-
-    // Get entered search text
-    const searchValue = searchInput.value.toLowerCase().trim();
-
-    // Track whether any product matches
-    let found = false;
-
-    // Loop through all products
-    products.forEach(function(product) {
-
-        // Get product name
-        const productName = product.dataset.name.toLowerCase();
-
-        // Check if product name matches search
-        if (productName.includes(searchValue)) {
-
-            // Show matching product
-            product.style.display = "block";
-
-            found = true;
-
-        } else {
-
-            // Hide non-matching product
-            product.style.display = "none";
-
-        }
-
-    });
-
-    // Show message if no products match
-    noResults.style.display = found ? "block" : "none";
-
+    // Finally, append card to the body or any container
+    document.querySelector(".cards").appendChild(card);
+  });
 }
 
+showUsers(users);
 
-// Run search when button is clicked
-searchBtn.addEventListener("click", searchProducts);
+let inp = document.querySelector(".inp");
+inp.addEventListener("input", function () {
+ let newUsers = users.filter((user) => {
+   if (user.name.startsWith(inp.value)) {
+     return true;
+   }
+   return false;
+ });
+ if (newUsers.length === 0) {
+   document.querySelector(".cards").innerHTML = "<p>No users found</p>";
+   return;
+ }
 
+ 
 
-// Also search when Enter is pressed
-searchInput.addEventListener("keydown", function(event) {
-
-    if (event.key === "Enter") {
-
-        searchProducts();
-
-    }
-
-});
-
-
-// ======================================
-// 5. CLOSE MOBILE MENU AFTER CLICK
-// ======================================
-
-navLinks.addEventListener("click", function(event) {
-
-    // Check whether a navigation link was clicked
-    if (event.target.tagName === "A") {
-
-        // Close mobile menu
-        navLinks.classList.remove("active");
-
-    }
-
+  document.querySelector(".cards").innerHTML = "";
+  showUsers(newUsers);
 });
